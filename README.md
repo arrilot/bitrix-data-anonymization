@@ -10,7 +10,10 @@
 
 1. ```composer require arrilot/bitrix-data-anonymization```
 
-...
+2. ```cp vendor/arrilot/bitrix-data-anonymization/anonymizer anonymizer```
 
 ## Usage
 
+1. Edit ```anonymizer``` according to your need.
+
+2. Run ```php anonymizer```
