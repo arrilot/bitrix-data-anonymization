@@ -1,18 +1,23 @@
 #!/usr/bin/env php
 <?php
 
-use Arrilot\DataAnonymization\Commands\RunCommand;
+use Arrilot\BitrixDataAnonymization\Database as BitrixDatabase;
 use Arrilot\DataAnonymization\Anonymizer;
-use Symfony\Component\Console\Application;
+use Arrilot\DataAnonymization\Blueprint;
 
-require './vendor/autoload.php';
+define("NOT_CHECK_PERMISSIONS", true);
+$_SERVER["DOCUMENT_ROOT"] = __DIR__;
+require $_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.php";
 
-$dsn = 'mysql:dbname=test;host=127.0.0.1';
-$user = 'testuser';
-$password = 'test*';
+Blueprint::setDefaultPrimary('ID');
 
-$anonymizer = new Anonymizer($dsn, $user, $password);
+$anonymizer = new Anonymizer(new BitrixDatabase());
 
-$app = new Application('Data Anonymization');
-$app->add(new RunCommand($anonymizer));
-$app->run();
+$anonymizer->table('b_user', function (Blueprint $table) {
+    $table->column('login')->where('ID != 1')->replaceWith('email_#row#@example.com');
+    $table->column('email')->where('ID != 1')->replaceWith('email_#row#@example.com');
+});
+
+$anonymizer->run();
+
+echo 'Anonymization has been completed!';
