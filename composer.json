@@ -1,0 +1,34 @@
+{
+  "name": "arrilot/bitrix-data-anonymization",
+  "license": "MIT",
+  "description": "Bitrix bridge for arrilot/data-anonymization",
+  "keywords": [
+    "anonymization",
+    "database",
+    "bitrix"
+  ],
+  "authors": [
+    {
+      "name": "Nekrasov Ilya",
+      "email": "nekrasov.ilya90@gmail.com"
+    }
+  ],
+  "homepage": "https://github.com/arrilot/bitrix-data-anonymization",
+  "require": {
+    "arrilot/data-anonymization": "~1.0",
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~4.0",
+    "mockery/mockery": "~0.9"
+  },
+  "autoload": {
+    "psr-4": {
+      "Arrilot\\BitrixDataAnonymization\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Arrilot\\Tests\\BitrixDataAnonymization\\": "tests/"
+    }
+  }
+}
