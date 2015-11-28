@@ -12,6 +12,7 @@ class Database extends SqlDatabase
      * Constructor.
      *
      * @param string $connectionName
+     *
      * @throws Exception
      */
     public function __construct($connectionName = 'default')
